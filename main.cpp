@@ -57,7 +57,7 @@ constexpr double CORRECTION_ANGLE = 45.0;
 constexpr double CORRECTION_POCKET = 0.0;
 constexpr double FRACTION_RATIO = 0.0;
 constexpr double FRACTION_DIA = 0.0;
-constexpr double NOMAL_ANGLE = 20.0;
+constexpr double NOMINAL_ANGLE = 20.0;
 
 double distanceToCenter(const Pos start, const Pos target) {
 	// start -  target 간의 거리
@@ -116,7 +116,7 @@ Linear getLinear(const Pos start, const Pos target, const int option = LEFT) {
 }
 
 Pos getPoint(const Pos circle, const Linear data) {
-	// 교점 구하는 거(내부 함수)
+	// 교점 구하는 거 (내부 함수)
 	Pos result = { 0.0f, 0.0f };
 	if (data.type == ROW) {
 		result.x = circle.x;
@@ -373,14 +373,14 @@ int main()
 					hitPoint = getHitPoint(target, targetToHallAngle);
 					pointAngle = angleToCenter(white, hitPoint);
 
-					double distanceToTaget = distanceToCenter(white, hitPoint);
+					double distanceToTarget = distanceToCenter(white, hitPoint);
 					double distanceToHall = distanceToCenter(target, pocket);
 
 					printf("Shot to (%lf, %lf) (%lf)\n", hitPoint.x, hitPoint.y, pointAngle);
 
 					angle = static_cast<float>(convertTogameAngle(pointAngle));
-					power = static_cast<float>((distanceToTaget + distanceToHall) * 0.3 > 100.0 ? 100.0 :
-						(distanceToTaget + distanceToHall) * 0.5);
+					power = static_cast<float>((distanceToTarget + distanceToHall) * 0.3 > 100.0 ? 100.0 :
+						(distanceToTarget + distanceToHall) * 0.5);
 
 					break;
 				}
@@ -388,16 +388,16 @@ int main()
 
 			// 모든 홀로 갈 수 없는 상황인 경우
 			if (angle == 0.0f && power == 0.0f) {
-				Pos hitPoint = getHitPoint(target, NOMAL_ANGLE);
-				printf("movementAngle : %lf\n", NOMAL_ANGLE);
+				Pos hitPoint = getHitPoint(target, NOMINAL_ANGLE);
+				printf("movementAngle : %lf\n", NOMINAL_ANGLE);
 				double pointAngle = angleToCenter(white, hitPoint);
-				double distanceToTaget = distanceToCenter(white, hitPoint);
+				double distanceToTarget = distanceToCenter(white, hitPoint);
 
 				printf("Shot to (%lf, %lf) (%lf)\n", hitPoint.x, hitPoint.y, pointAngle);
 
 				angle = static_cast<float>(convertTogameAngle(pointAngle));
-				power = static_cast<float>((distanceToTaget * 2.0) * 0.3 > 100.0 ? 100.0 :
-					(distanceToTaget * 2.0) * 0.5);
+				power = static_cast<float>((distanceToTarget * 2.0) * 0.3 > 100.0 ? 100.0 :
+					(distanceToTarget * 2.0) * 0.5);
 			}
 
 			break;
