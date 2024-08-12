@@ -339,7 +339,7 @@ int main()
 			{0.0 + CORRECTION_POCKET, 127.0 - CORRECTION_POCKET},
 			{0.0 + CORRECTION_POCKET, 0.0 + CORRECTION_POCKET} };
 
-		std::vector<std::vector<int>> orderList = { {0, 0, 0}, {1, 3 , 5}, {2, 4, 5} };
+		std::vector<std::vector<int>> orderList = { {0, 0, 0}, {1, 3, 5}, {2, 4, 5} };
 		std::vector<Pos> danggoos(6, { 0.0, 0.0 });
 		for (int index = 0; index < 6; index++)
 			danggoos[index] = { balls[index][0], balls[index][1] };
@@ -386,14 +386,11 @@ int main()
 				}
 			}
 
+			// 모든 홀로 갈 수 없는 상황인 경우
 			if (angle == 0.0f && power == 0.0f) {
 				Pos hitPoint = getHitPoint(target, NOMAL_ANGLE);
 				printf("movementAngle : %lf\n", NOMAL_ANGLE);
 				double pointAngle = angleToCenter(white, hitPoint);
-
-				hitPoint = getHitPoint(target, NOMAL_ANGLE);
-				pointAngle = angleToCenter(white, hitPoint);
-
 				double distanceToTaget = distanceToCenter(white, hitPoint);
 
 				printf("Shot to (%lf, %lf) (%lf)\n", hitPoint.x, hitPoint.y, pointAngle);
