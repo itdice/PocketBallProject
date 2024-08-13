@@ -3,5 +3,5 @@ project(PocketBallProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(PocketBallProject main.cpp)
+add_executable(mod01 modified01.cpp)
 add_executable(TestBed test.cpp)
